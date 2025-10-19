@@ -30,3 +30,41 @@ http://openapi.seoul.go.kr:8088/{본인의 API 키}/json/energyUseDataSummaryInf
 
 4. 연도별 에너지 사용량 변화에서 나타나는 주요 트렌드를 찾아 분석하고, 그 원인을 추론하여
 200자 이내로 설명하시오. (4점)
+
+
+--------------------------------
+-	생성형 인공지능 사용 불가
+-	제출파일 종류: 아래한글 또는 MS word 파일
+※ PDF 파일 제출 불가
+-	문제 1-2, 2~3은 반드시 파이썬 코드(텍스트)와 실행결과(캡쳐 이미지)를 제출
+※ 제출 예시 참조
+-	타 학생의 과제물과 표현이 일치할 경우 제공자 및 참조자 모두 감점 처리
+-	빈 파일, 표지만 있는 파일, 타 과목 과제물 파일 등을 제출할 경우 0점 처리되므로 과제물
+제출 직후 반드시 확인할 것
+----
+def get_year_months(): year_months = []
+for year in range(2015, 2024+1):
+for month in range(1,12+1): year_months.append(f'{year}{month:02d}')
+return year_months
+
+responses = []
+
+for year_month in get_year_months():
+# 데이터를 수집하고 responses에 추가
+
+---
+import requests
+
+url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty" api_key = "a3ERY4puvBY*********************************************************"
+
+params = {
+'serviceKey': api_key, 'returnType': 'json', 'numOfRows': '100',
+'pageNo': '1',
+'sidoName': '서울',
+'ver': '1.0'
+}
+response = requests.get(url, params=params) if response.status_code == 200:
+print("api 호출 성공")
+print(response.json()) else:
+print(f"API 호출 실패: {response.status_code}")
+
